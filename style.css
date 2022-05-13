@@ -1,0 +1,162 @@
+/*responsive with css grid*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #e5e5e5;
+}
+
+main {
+    max-width: 800px;
+    width: 90%;
+    margin: auto;
+    padding: 40px;
+}
+
+.formulario {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px; /*espaciado enre las filas y column*/
+}
+
+.formulario__label {
+    display: block;
+    font-weight: 700;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.formulario__grupo-input {
+    position: relative;/*para que el grupo tenga un posicionamiento realtivo y el icono absoluto asi lo posicionamos adelante*/
+}
+
+.formulario__input{
+    width: 100%;
+    background: #fff;
+    border: 3px solid transparent;/*no queremos que se vea, solo cuando tenga su estado foco o sea un click*/
+    border-radius: 3px;
+    height: 45px;
+    line-height: 45px;
+    padding: 0 40px 0 10px;
+    transition: .3s ease all;
+}
+
+.formulario__input:focus {
+    border: 3px solid #0075ff;
+    outline: none;
+    box-shadow: 3px 0px 30px rgba(163, 163, 163, 0.4); 
+}
+
+.formulario__input-error {
+    font-size: 0.8rem;
+    margin-bottom: 0;
+    display: none; /*oculta los msj y solo se muestra si surga un error*/
+}
+
+.formulario__input-activo {
+    display: block;
+}
+
+.formulario__validacion-estado {
+    position: absolute;
+    right: 10px;
+    bottom: 15px;
+    z-index: 100;
+    font-size: 1rem;
+    opacity: 0;
+}
+
+.formulario__checkbox {
+    margin-right: 10px;
+}
+
+.formulario__grupo-terminos,
+.formulario__mensaje,
+.formulario__grupo-btn-enviar {
+    grid-column: span 2; /*permite que solo el grupo de terminos ocupe las 2 columnas*/
+}
+
+.formulario__mensaje {
+    height: 45px;
+    line-height: 45px;
+    background: #f66060;
+    padding: 0 15px;
+    border-radius: 3px;
+    display: none;
+}
+
+.formulario__mensaje-activo {
+    display: block;
+}
+
+.formulario__mensaje p {
+    margin: 0;
+}
+
+.formulario__grupo-btn-enviar {
+    display: flex;
+    flex-direction: column; /*el txt del btn queda abajo en forma de columna*/
+    align-items: center;
+}
+.formulario__btn {
+    height: 45px;
+    line-height: 45px;
+    width: 30%;
+    background: black;
+    color: whitesmoke;
+    font-weight: bold;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: .1s ease all; 
+}
+
+.formulario__btn:hover{
+    box-shadow: 3px 0px 30px grey ; /*cuando pasen el curso tenga una pequeña sombra*/
+}
+
+.formulario__mensaje-exito {
+    font-size: .9rem;
+    color: #119200;
+    display: none;
+}
+
+.formulario__mensaje-exito-activo {
+    display: block;
+}
+/*----estilos para la validacion----*/
+.formulario__grupo-correcto .formulario__validacion-estado {
+    color: #1ed12d;
+    opacity: 1;
+}
+
+.formulario__grupo-icorrecto .formulario__label {
+    color: #bb2929;
+}
+.formulario__grupo-incorrecto .formulario__validacion-estado {
+    color: #bb2929;
+    opacity:1;
+}
+
+.formulario__grupo-incorrecto .formulario__input {
+    border: 3px solid #bb2929;
+}
+
+/*-----mediaqueries-----*/
+
+@media screen and (max-width: 800px) {
+    .formulario {
+        grid-template-columns: 1fr;
+    }
+    .formulario__grupo-terminos,
+    .formulario__mensaje,
+    .formulario__grupo-btn-enviar {
+    grid-column: 1; 
+    }
+    .formulario__btn {
+        width: 100%; 
+    }
+}
